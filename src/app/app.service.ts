@@ -23,19 +23,23 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
+  //Login Function
+  
   public loginFunction(data: any): Observable<any> {
     this.email = data.email;
     this.password = data.password;
     let b = new Buffer(this.email + ':' + this.password).toString('base64');
-    let c =Math.random();
+    let c = Math.random();
 
-    return this.http.post(this.url + '/authorizations', { "scopes": ["repo", "user"], "note": "getting-started"+c}, {
+    return this.http.post(this.url + '/authorizations', { "scopes": ["repo", "user"], "note": "getting-started" + c }, {
       headers: {
         'Authorization': 'Basic ' + b
       }
     })
   };
-
+  
+  //Fetching User data using token which we get after authentication
+  
   public getUserProfileInfo(accessToken): Observable<any> {
     let token = accessToken;
     return this.http.get(this.url + '/user', {
@@ -44,26 +48,44 @@ export class AppService {
       }
     });
   }
-
+  
+  //Getting Public User Data(No Authentication is Required for this API)
+  
   public getProfileInfo(): Observable<any> {
     return this.http.get(this.url + '/users/' + this.userName);
   }
+
+  //Fetching Public Repos of the User
+
   public getUserRepos(): Observable<any> {
     return this.http.get(this.url + '/users/' + this.userName + '/repos');
   }
+  
+  //Fetching Public gists of the User
+
   public getUserGists(): Observable<any> {
     return this.http.get(this.url + '/users/' + this.userName + '/gists');
   }
+
+  //Fetching info regarding how many people follow user
+
   public getUserFollowers(): Observable<any> {
     return this.http.get(this.url + '/users/' + this.userName + '/followers');
   }
+
+  //Fetching how many people user follows
+
   public getUserFollowing(): Observable<any> {
     return this.http.get(this.url + '/users/' + this.userName + '/following');
   }
+
+  //Fetching info regarding No of Repos starred by User
+
   public getStarredRepo(): Observable<any> {
     return this.http.get(this.url + '/users/' + this.userName + '/starred');
   }
 
+  //Handling Error
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';
     if (err.error instanceof Error) {
