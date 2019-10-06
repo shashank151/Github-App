@@ -1,0 +1,117 @@
+<div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+        <a class="navbar-brand" href="#" style="color: whitesmoke">
+            <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" width="30" height="30"
+                class="d-inline-block align-top" alt="">
+            GitHub-APP
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2 search-bar" type="search" [(ngModel)]="userName" name="userName"
+                    placeholder="Username" aria-label="Search" spellcheck="false">
+                <br>
+                <button class="btn btn-outline bg-light my-2 my-sm-0" type="submit"
+                    (click)="getProfile()">Search</button>
+            </form>
+            <button class="btn btn-outline bg-light ml-sm-auto my-2 my-sm-0" (click)="userLogout()">Logout</button>
+        </div>
+    </nav>
+    <br>
+
+    <div *ngIf="profileData" class="container-fluid row">
+        <div class="col-sm-3">
+            <div class="basic-info">
+                <img src="{{profileData.avatar_url}}" class="profile-img img-resposnsive" id="avtar" alt="profile-img">
+                <div class="basic-info-body">
+                    <br>
+                    <a class="basic-info-data" href={{profileData.html_url}}><i class="fas fa-globe"></i>
+                        <strong> {{profileData.login}} </strong></a>
+                    <p class="basic-info-data"><i class="far fa-building"></i><strong>
+                            {{profileData.company}} </strong></p>
+                    <p class="basic-info-data"><i class="fas fa-map-marker-alt"></i><strong>
+                            {{profileData.location}}</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <h5>{{profileData.name}}</h5>
+            <p>{{profileData.bio}}</p>
+            <div id="info-butons">
+                <button class="btn btn-info info-buton" type="button" id="repositories-button" (click)="userRepos()">
+                    Repositories({{profileData.public_repos}})</button>
+                <button class="btn btn-warning info-buton" type="button" id="gists-button" (click)="userGists()">
+                    Gists({{profileData.public_gists}})</button>
+                <button class="btn btn-primary info-buton" type="button" id="followers-button"
+                    (click)="userFollowers()">
+                    Followers({{profileData.followers}})</button>
+                <button class=" btn btn-success info-buton" type="button" id="following-button" disabled>
+                    Following({{profileData.following}})</button>
+                <button class="btn btn-danger info-buton" type="button" id="following-button" disabled>
+                    Stars({{starRepo}})</button>
+            </div>
+            <hr width="100%" align="left">
+            <div>
+                <ul id="user-pubic-repo-list">
+                    <h5>Public Repositries</h5>
+                    <br>
+                    <li *ngFor="let repo of userReposList | paginate: {itemsPerPage: 4, currentPage: p, id: 'first'}"
+                        class="repo">
+                        <a href={{repo.html_url}}>{{repo.name}}</a>
+                        <p>{{repo.description}}</p>
+                        <hr width="100%" allign="left">
+                    </li>
+                    <div class=" container pagination-toggler ">
+                        <pagination-controls (pageChange)="p = $event" id='first' autoHide=true></pagination-controls>
+                    </div>
+                    <div class="container" *ngIf="userReposListLength == 0">
+                        <div class="row no-list">
+                           <h5>No Public Repository Availaible</h5>
+                        </div>
+                    </div>
+                </ul>
+
+                <ul id="user-public-gist-list">
+                    <h5>Public Gists</h5>
+                    <br>
+                    <li *ngFor="let gist of userGistsList | paginate: {itemsPerPage: 4, currentPage: g, id: 'second'}"
+                        class="gist">
+                        <a href={{gist.html_url}}>{{gist.description}}</a>
+                        <p>{{gist.comments}}</p>
+                        <hr width="100%" allign="left">
+                    </li>
+                    <div class=" container pagination-toggler ">
+                        <pagination-controls (pageChange)="g = $event" id='second' autoHide=true></pagination-controls>
+                    </div>
+                    <div class="container" *ngIf="userGistsListLength == 0">
+                        <div class="row no-list">
+                            <h5>No Public Gist Availaible</h5>
+                        </div>
+                    </div>
+                </ul>
+                <ul id="user-followers-list">
+                    <h5>Followers</h5>
+                    <br>
+                    <div class="container follower-box ">
+                        <li *ngFor="let follower of userFollowerList | paginate: {itemsPerPage: 4, currentPage: f, id:'third'}"
+                            class="follower">
+                            <img src={{follower.avatar_url}} class="follower-img">
+                            <p appClick><a class ="follower_username" style="text-decoration: underline;color: blue">{{follower.login}}</a></p>
+                        </li>
+                    </div>
+                    <div class=" container pagination-toggler ">
+                        <pagination-controls (pageChange)="f = $event" id='third' autoHide=true></pagination-controls>
+                    </div>
+                    <div class="container" *ngIf="userFollowerListLength == 0">
+                        <div class="row no-list">
+                            <h5>No Followers Availaible</h5>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+.profile-img {
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 80%;
+    margin-left: 15%;
+    border: 1px solid black;
+}
+
+.basic-info-body {
+    text-align: center;
+}
+
+.basic-info-data {
+    text-align: center;
+    margin-bottom: 0%;
+}
+
+.info-buton {
+    margin: 1%;
+}
+
+#user-pubic-repo-list {
+    display: none;
+    margin: 0%;
+    padding: 0%;
+}
+
+.repo {
+    list-style-type: none;
+}
+
+#user-public-gist-list {
+    margin: 0%;
+    padding: 0%;
+}
+
+.gist {
+    list-style-type: none;
+}
+.no-list{
+    justify-content: center;
+}
+
+#user-followers-list {
+    margin: 0%;
+    padding: 0%;
+}
+
+.follower {
+    list-style-type: none;
+    width: 150px;
+    height: 150 px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.follower-img {
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 120px;
+    height: 120 px;
+}
+
+.follower-box {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.pagination-toggler {
+    display: flex;
+    justify-content: center;
+    padding-left: 0%
+}
+
+@media only screen and (max-width: 500px) {
+    .profile-img {
+        margin-left: 25%;
+        padding: auto;
+        width: 50%;
+        height: 30%;
+    }
+    .basic-info-body {
+        text-align: center;
+    }
+    .basic-info-data {
+        display: inline;
+    }
+    .row {
+        margin: 0%;
+    }
+    .follower-img {
+        border-radius: 50%;
+        width: 50%;
+        border: 1px solid black;
+    }
+    .follower-box {
+        justify-content: center;
+        text-align: center;
+    }
+    .follower {
+        list-style-type: none;
+        width: 40%;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+}
