@@ -12,11 +12,13 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
-  {path: 'user-basic', component: UserBasicComponent},
+  { path: 'user-basic', component: UserBasicComponent },
+  { path: 'notfound', component: NotFoundComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '*', component: LoginComponent },
   { path: '**', component: LoginComponent }
@@ -24,7 +26,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

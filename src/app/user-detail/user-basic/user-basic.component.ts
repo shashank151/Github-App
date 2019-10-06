@@ -3,7 +3,7 @@ import { AppService } from './../../app.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
-import { HostListener } from '@angular/core';
+
 
 @Component({
   selector: 'app-user-basic',
@@ -46,7 +46,9 @@ export class UserBasicComponent implements OnInit {
       this.appService.userName = apiResponse.login;
       this.showStarredRepo();
       this.userRepos();
-    })
+    }),(err) =>{
+      this.router.navigate(['/not-found']);
+    }
   }
   public showStarredRepo: any = () => {
     this.appService.getStarredRepo().subscribe((apiResponse) => {
@@ -82,7 +84,9 @@ export class UserBasicComponent implements OnInit {
         displayRepo.style.display = "block";
         displayGist.style.display = "none";
         displayfollower.style.display = "none";
-      })
+      }),(err) =>{
+        this.router.navigate(['/not-found']);
+      }
   }
 
   public userGists: any = () => {
@@ -96,7 +100,9 @@ export class UserBasicComponent implements OnInit {
         displayRepo.style.display = "none";
         displayGist.style.display = "block";
         displayfollower.style.display = "none"
-      })
+      }),(err) =>{
+        this.router.navigate(['/not-found']);
+      }
   }
 
   public userFollowers: any = () => {
@@ -110,12 +116,11 @@ export class UserBasicComponent implements OnInit {
         displayRepo.style.display = "none";
         displayGist.style.display = "none";
         displayfollower.style.display = "block";
-      })
+      }),(err) =>{
+        this.router.navigate(['/not-found']);
+      }
   }
 
-  public openFollowerDetail:any =() => {
-   
-  }
   public userLogout: any = () => {
     Cookie.delete('accessToken');
     this.router.navigate(['/login']);

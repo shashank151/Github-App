@@ -52,9 +52,9 @@ export class LoginComponent implements OnInit {
         .subscribe((apiResponse) => {
           console.log(apiResponse);
           if (apiResponse.token) {
-            Cookie.set('accessToken', apiResponse.token);
+            Cookie.set('accessToken', apiResponse.token); 
             this.appService.accessToken = apiResponse.token;
-            this.router.navigate(['/user-basic']);
+            this.router.navigate(['/user-basic']); 
           }
           else {
             this.toastr.error(apiResponse.message);

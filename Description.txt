@@ -1,0 +1,14 @@
+GithubAPP
+1.This App is a github Mock dashboard which shows your public repositories, gists & followers. 
+2.You Can use this dashboard to search for any github user & find there repositories,gists & followers.
+3. All Repos fetched are public for primary as well as Searched user(as mentioned in Requirement Doc).
+4. All Gists too are public for primary as well as Searched user.
+5. Only No. of Starred URL & Following are displayed. 
+6. All the Requirements are fullfilled.
+7. Warning are displayed wherever necessary.
+
+Github URL:-
+https://github.com/shashank151/Github-App
+
+S3 host URl:-
+http://falconsoftware.online.s3-website.ap-south-1.amazonaws.com
